@@ -1,0 +1,260 @@
+@use '@material/button/mdc-button';
+@use '@material/button';
+@use '@material/button/styles';
+@use '@material/checkbox';
+@use '@material/form-field';
+
+@include checkbox.core-styles;
+@include form-field.core-styles;
+
+@import 'normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap');
+
+@font-face {
+	font-family: 'museo_slab300';
+	src: url('https://s3.amazonaws.com/rsrc.kwc/2021-22/museoslab-300-webfont.woff2') format('woff2'),
+			 url('https://s3.amazonaws.com/rsrc.kwc/2021-22/museoslab-300-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'museo_slab700';
+	src: url('https://s3.amazonaws.com/rsrc.kwc/2021-22/museoslab-700-webfont.woff2') format('woff2'),
+			 url('https://s3.amazonaws.com/rsrc.kwc/2021-22/museoslab-700-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+$font-kwc-serif-bold: 'museo_slab700', Georgia, 'Times New Roman', Times, serif;
+$kwc-violet: rgb(57, 32, 130);
+$kwc-neon: rgb(207, 113, 207);
+
+.kwc-bold { font-family: $font-kwc-serif-bold; }
+
+body {
+	background-image: url('https://s3.amazonaws.com/rsrc.kwc/2021-22/Asset+11%403x-100-1.jpg');
+	background-size: cover;
+	background-position: center;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+	font-size: 1.2rem;
+	line-height: 1.4;
+
+	& > .container {
+		max-width: 1200px;
+		min-height: 100vh;
+		margin: auto;
+
+		header {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+
+			.header-logo {
+				max-width: 240px;
+				margin-top: 30px;
+				margin-bottom: 20px;
+			}
+
+			.find-yourself {
+				width: 80%;
+				max-width: 420px;
+			}
+		}
+	
+		& > main {
+			@media screen and (max-width: 887px) {
+				padding-bottom: 48%;
+				background-image: url('https://s3.amazonaws.com/rsrc.kwc/2021-22/group-photo.png');
+				background-size: contain;
+				background-repeat: no-repeat;
+				background-position: center bottom;
+			}
+			
+			.container {
+				display: grid;
+				grid-template-columns: 65% 35%;
+
+				@media screen and (max-width: 887px) {
+					grid-template-columns: 1fr;
+				}
+
+				.col-left {
+					background-image: url('https://s3.amazonaws.com/rsrc.kwc/2021-22/group-photo.png');
+					background-size: 100% auto;
+					background-position: center bottom;
+					background-repeat: no-repeat;
+					padding: 30px;
+
+					@media screen and (max-width: 887px) {
+						background-image: none;
+						padding: 15px;
+					}
+
+					p { color: #fff; }
+
+					.core-principles {
+						margin-top: 2rem;
+						text-align: center;
+
+						p {
+							display: grid;
+							grid-template-columns: 35% min-content auto;
+							align-items: baseline;
+							font-size: 1.3rem;
+							padding: 0;
+							margin: 0;
+
+							@media screen and (max-width: 537px) {
+								font-size: calc(100vw * 0.037);
+							}
+
+							.a { 
+								grid-column-start: 1; 
+								text-align: right;
+							}
+							.b { 
+								grid-column-start: 2; 
+								text-align: left; 
+								font-size: 180%;
+								font-family: $font-kwc-serif-bold;
+								color: $kwc-neon;
+								&:before { content: "\00a0"; }
+							}
+							.c {
+								grid-column-start: 3;
+								text-align: left;
+								&:before { content: "\00a0"; }
+							}
+						}
+					}
+				}
+
+				.col-right {
+					padding: 30px 30px 0 0;
+					text-align: center;
+
+					@media screen and (max-width: 887px) {
+						padding: 15px;
+					}
+
+					form {
+						background-color: rgb(200, 200, 198);
+						padding: 0 15px 30px;
+						display: inline-block;
+
+						header {
+							margin-top: 1em;
+							padding-top: 15px;
+							font-family: 'museo_slab300', Georgia, serif;
+							color: $kwc-violet;
+
+							h3 {
+								font-family: 'museo_slab700', Georgia, serif;
+								font-weight: bold;
+								margin: 0 0 5px;
+							}
+						}
+
+						div.down-arrow {
+							width: 0;
+							height: 0;
+							border-left: 20px solid transparent;
+							border-right: 20px solid transparent;
+							border-top: 20px solid $kwc-neon;
+							margin: 0 auto 15px;
+						}
+
+						div.pii {
+							margin: 1em 0;
+
+							input {
+								display: block;
+								box-sizing: border-box;
+								padding: 8px;
+								color: #555555;
+								border: lightgray;
+								width: 100%;
+								margin-top: 15px;
+								border-radius: 4px;
+							}
+						}
+
+						div.interests {
+							background: #fff;
+							padding: 15px;
+
+							.mdc-form-field {
+								display: flex;
+								text-align: left;
+								font-family: 'Roboto', sans-serif;
+								font-size: 1em;
+
+								.mdc-checkbox {
+									@include checkbox.container-colors($kwc-violet, #fff, $kwc-violet, $kwc-violet);
+								}
+							}
+						}
+
+						div.submit {
+							padding: 15px;
+
+							.mdc-touch-target-wrapper {
+								display: block;
+
+								button.mdc-button--raised {
+									border: solid 1px #fff;
+									height: 40px;
+									padding: 1.5em 4em;
+
+									.mdc-button__label {
+										font-family: sans-serif;
+										font-weight: bold;
+										letter-spacing: normal;
+										font-size: 1.3rem;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	
+		footer {
+			border-top: solid 30px #000;
+			background: #fff;
+			display: flex;
+			font-family: 'museo_slab300', Georgia, 'Times New Roman', Times, serif;
+
+			@media screen and (max-width: 520px) {
+				display: block;
+			}
+
+			.kwc-logo {
+				background-image: url('https://s3.amazonaws.com/rsrc.kwc/2021-22/kwc_logo_violet.jpg');
+				background-repeat: no-repeat;
+				background-size: contain;
+				background-position: right center;
+				margin: 1em;
+
+				@media screen and (max-width: 520px) {
+					min-height: 90px;
+					background-position: center;
+				}
+			}
+
+			& > div {
+				display: flex;
+				flex: 1;
+				flex-direction: column;
+				padding: 1em;
+
+				@media screen and (max-width: 520px) {
+					align-items: center;
+				}
+			}
+		}
+	}
+}
